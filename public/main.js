@@ -1,5 +1,7 @@
 const formSimples = document.querySelector("#data-simples");
 const formDiferenca = document.querySelector("#diferenca");
+let numData = 0;
+let numDiff = 0;
 
 formSimples.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -15,7 +17,8 @@ formSimples.addEventListener("submit", async (event) => {
     const unix = responseJson.unix;
     const utc = responseJson.utc;
     const resultado = formSimples.querySelector("#result");
-    resultado.innerHTML = `<h3>Resultado:</h3><p>Unix: ${unix}</p><p>UTC: ${utc}</p>`;
+    numData++;
+    resultado.innerHTML += `<tr><td>${numData}</td><td>${utc}</td><td>${unix}</td><td>${fuso}</td></tr>`;
   
 });
 
@@ -38,5 +41,6 @@ formDiferenca.addEventListener("submit", async (event) => {
     const minutos = responseJson.diferenca.minutos;
     const segundos = responseJson.diferenca.segundos;
     const resultado = formDiferenca.querySelector("#result");
-    resultado.innerHTML = `<h3>Resultado:</h3><p>Data 1: ${data1UTC}</p><p>Data 2: ${data2UTC}</p><h5>Diferença:</h5><p>Dias: ${dias}</p><p>Horas: ${horas}</p><p>Minutos: ${minutos}</p><p>Segundos: ${segundos}</p>`;
+    numDiff++;
+    resultado.innerHTML += `<tr><td>${numDiff}</td><td>${data1UTC}</td><td>${data2UTC}</td><td>${dias} dias, ${horas} horas, ${minutos} minutos, ${segundos} segundos</td></tr>`;
 });
