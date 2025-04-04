@@ -7,7 +7,10 @@ body{
   color: white;
 }
 
-b
+#tutorial{
+  text-align: center;
+  color: white;
+}
 
 table, th, td { /*estilo da tabela*/
     border: 1px solid black;/* adiciona bordas*/
