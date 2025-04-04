@@ -20,68 +20,68 @@ app.get("/", function (req, res) {
 
 const isInvalidDate = (date) => date.toUTCString() === 'Invalid Date';
 
-// your first API endpoint... 
-app.get("/api/:date", function (req, res) {
-  let date = new Date(req.params.date);
-  let URL = req.originalUrl;
-  let params = new URLSearchParams(URL.split('?')[1]);
-  let utc = params.get('utc');
-  console.log(utc);
 
-  if (isInvalidDate(date)) {
-    date = new Date(+req.params.date);
+app.get("/api/:date", function (req, res) {//api para pegar data
+  let date = new Date(req.params.date);//pega a data do parametro
+  let URL = req.originalUrl;//pega a url original
+  let params = new URLSearchParams(URL.split('?')[1]);//transforma a url após ? em parametros
+  let utc = params.get('utc');//pega o parametro utc(fuso)
+  console.log(utc);//testa a variavel
+
+  if (isInvalidDate(date)) {// verifica se a data é valida
+    date = new Date(+req.params.date); //tenta converter a string para um numero
   }
-  if (isInvalidDate(date)) {
-    res.json({ error: "Invalid Date" });
+  if (isInvalidDate(date)) {//verifica novamente se é valida
+    res.json({ error: "Invalid Date" });//devolve json de erro
     return;
   }
-  if (utc !== null) {
-    date = new Date(date.getTime() + (3600000 * utc));
-    if (isInvalidDate(date)) {
+  if (utc !== null) {//verifica se o parametro utc existe
+    date = new Date(date.getTime() + (3600000 * utc));//converte a data para o fuso horario
+    if (isInvalidDate(date)) {//verifica novamente se é valida e envia json de erro caso for
       res.json({ error: "Invalid Date" });
       return;
     }
   }
-  res.json({
+  res.json({//json de resposta
       unix: date.getTime(),
-      utc: date.toUTCString(),
+      utc: date.toUTCString() + " " + utc ,
     });
   });
 
 
-app.get("/api", function (req, res) {
-  let date = new Date();
+app.get("/api", function (req, res) {//api para pegar data atual
+  let date = new Date();//pega a data atual
 
-  res.json({
+  res.json({//json de resposta
       unix: date.getTime(),
       utc: date.toUTCString()
     });
   }
 );
 
-app.get("/api/diff/:date1/:date2", function (req, res) {
-  let date1 = new Date(req.params.date1);
-  let date2 = new Date(req.params.date2);
+app.get("/api/diff/:date1/:date2", function (req, res) {//api para fazer a diferença entre datas(não suporta fuso)
+  let date1 = new Date(req.params.date1);//pega a primeira data
+  let date2 = new Date(req.params.date2);//pega a segunda data
  
-  if (isInvalidDate(date1) || isInvalidDate(date2)) {
-    res.json({ error: "Invalid Date" });
+  if (isInvalidDate(date1) || isInvalidDate(date2)) {//verifica se as datas são validas
+    res.json({ error: "Invalid Date" });//json de erro
     return;
   }
 
-  let diff = Math.abs(date1 - date2);
-  let days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  diff = diff - (days * 1000 * 60 * 60 * 24);
-  let hours = Math.floor(diff / (1000 * 60 * 60));
-  diff = diff - (hours * 1000 * 60 * 60);
-  let minutes = Math.floor(diff / (1000 * 60));
-  diff = diff - (minutes * 1000 * 60);
-  let seconds = Math.floor(diff / 1000);
+  let diff = Math.abs(date1 - date2);//realiza as operações de diferença entre as datas
+  let days = Math.floor(diff / (1000 * 60 * 60 * 24));//dias
+  diff = diff - (days * 1000 * 60 * 60 * 24);//atualiza diferenca
+  let hours = Math.floor(diff / (1000 * 60 * 60));//horas
+  diff = diff - (hours * 1000 * 60 * 60);//atualiza diferenca
+  let minutes = Math.floor(diff / (1000 * 60));//minutos
+  diff = diff - (minutes * 1000 * 60);//atualiza diferenca
+  let seconds = Math.floor(diff / 1000);//segundos
 
-  res.json(
+  res.json(//json de resposta
     {
-      data1: date1.toUTCString(),
-      data2: date2.toUTCString(),
-      diferenca: {
+      data1: date1.toUTCString(),//data1
+      data2: date2.toUTCString(),//data2
+      diferenca: {//diferenca entre as datas
         dias: days,
         horas: hours,
         minutos: minutes,

@@ -1,8 +1,19 @@
-table, th, td {
-    border: 1px solid black;
+body{
+  background-color:grey;
+}
+
+#titulo-principal{
+  text-align: center;
+  color: white;
+}
+
+b
+
+table, th, td { /*estilo da tabela*/
+    border: 1px solid black;/* adiciona bordas*/
     border-collapse: collapse;
   }
 
-th, td {
+th, td {/*estilo das colunas e rows da tabela*/
     padding: 10px;
   }

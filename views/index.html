@@ -7,46 +7,42 @@
       <script src="main.js" async defer></script>
     </head>
    <body>
-      <div class="container">
-         <h1>Timestamp Microservice do Brian :&rpar;</h1>
-         <p>Além da interface, voce também pode acessar o serviço usando /api/data podendo passar a data por milissegundos ou pelo formato aaaa-mm-ddT00:00:00 adicionando ?utc=fusohorario, sendo este opcional.
-            <br>Já para o serviço de diferenca: /api/diff/data1/data2 utiliza o mesmo formato do anterior porém não suporta fuso<br>
-            Na interface as datas seguem o mesmo formato
-         </p>
-         <form id="data-simples">
-            <h2>Data Simples</h2>
-            <p>Insira uma data ou timestamp</p>
-            <input type="text" placeholder="Data ou Timestamp" name="data">
-            <p>Insira o fuso horário (opcional)</p>
-            <input type="text" placeholder="Fuso Horário" name="fuso">
-            <button type="submit" id="submit">Enviar</button>
-            <table id="result">
-               <tr>
-                  <th>#</th>
-                  <th>Data</th>
-                  <th>Timestamp</th>
-                  <th>Fuso Horário</th>
-               </tr>
-
-            </table>
-         </form>
-         <form id="diferenca">
-            <h2>Diferença entre duas datas</h2>
-            <p>Insira a primeira data</p>
-            <input type="text" placeholder="Data ou timestamp 1" name="data1">
-            <p>Insira a segunda data</p>
-            <input type="text" placeholder="Data ou timestamp 2" name="data2">
-            <button type="submit" id="submit">Enviar</button>
-            <table id="result">
-               <tr>
-                  <th>#</th>
-                  <th>Data 1</th>
-                  <th>Data 2</th>
-                  <th>Diferença</th>
-               </tr>
-              </table>
-         </form>
-         <div id="result"></div>
-      </div>
+      <h1 id="titulo-principal">Timestamp Microservice do Brian :&rpar;</h1>
+      <p>Além da interface, voce também pode acessar o serviço usando /api/data podendo passar a data por milissegundos ou pelo formato aaaa-mm-ddT00:00:00 adicionando ?utc=fusohorario, sendo este opcional.
+         Já para o serviço de diferenca: /api/diff/data1/data2 utiliza o mesmo formato do anterior porém não suporta fuso
+         Na interface as datas seguem o mesmo formato
+      </p>
+      <form id="data-simples"><!-- formulario para a data simples (api/data) -->
+         <h2>Data Simples</h2>
+         <p>Insira uma data ou timestamp</p>
+         <input type="text" placeholder="Data ou Timestamp" name="data">
+         <p>Insira o fuso horário (opcional)</p>
+         <input type="text" placeholder="Fuso Horário" name="fuso">
+         <button type="submit" id="submit">Enviar</button>
+         <table id="result"><!-- tabela dos resultados -->
+            <tr>
+               <th>#</th>
+               <th>Data</th>
+               <th>Timestamp</th>
+               <th>Fuso Horário</th>
+            </tr>
+         </table>
+      </form>
+      <form id="diferenca"><!-- formulario para a diferenca (api/diff/data1/data2) -->
+         <h2>Diferença entre duas datas</h2>
+         <p>Insira a primeira data</p>
+         <input type="text" placeholder="Data ou timestamp 1" name="data1">
+         <p>Insira a segunda data</p>
+         <input type="text" placeholder="Data ou timestamp 2" name="data2">
+         <button type="submit" id="submit">Enviar</button>
+         <table id="result"> <!-- tabela dos resultados -->
+            <tr> 
+               <th>#</th>
+               <th>Data 1</th>
+               <th>Data 2</th>
+               <th>Diferença</th>
+            </tr>
+           </table>
+      </form>
   </body>
 </html>
