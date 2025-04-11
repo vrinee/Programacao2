@@ -1,22 +1,107 @@
-body{
-  background-color:grey;
+/* Estilo geral */
+:root { /*Variaveis para ser mais responsivo(acabei não usando bem devido ao escopo do projeto*/
+  --primary-color: #8d4fc4;
+  --secondary-color: #3b3145;
+  --text-color: #333;
 }
 
-#titulo-principal{
+body {/*estilo do corpo*/
+  font-family: Arial, sans-serif;
+  background-color: var(--secondary-color);
+  color: white;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+h1, h2 {/*estilo dos titulos*/
   text-align: center;
+  color: var(--primary-color);
+}
+
+h1 {/*estilo do titulo principal*/
+  margin-top: 20px;
+}
+
+p {/*estilo dos paragrafos*/
+  text-align: center;
+  margin: 10px 0;
   color: white;
 }
 
-#tutorial{
-  text-align: center;
+#tutorial { /*estilo do texto de tutorial*/
+  font-size: 14px;
   color: white;
+  margin: 20px auto;
+  max-width: 800px;
+  line-height: 1.5;
 }
 
-table, th, td { /*estilo da tabela*/
-    border: 1px solid black;/* adiciona bordas*/
-    border-collapse: collapse;
-  }
+/* estilo dos formulários */
+form {
+  background-color: #52455f;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
 
-th, td {/*estilo das colunas e rows da tabela*/
-    padding: 10px;
-  }
+form h2 { /*titulo do formulario*/
+  margin-bottom: 10px;
+}
+
+form p {/*paragrafo do formulario*/
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+input[type="text"] {/*inputs de texto*/
+  width: calc(100% - 20px);
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+button[type="submit"] {/*inputs de submit*/
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button[type="submit"]:hover {/*wuando se passa o mouse no submit*/
+  filter:brightness(90%);
+  transform: scale(1.05);
+}
+
+/* estilo das tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table th, table td { /*bordas das celulas*/
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+table tr { /*cor das rows*/
+  background-color: white; 
+  color: var(--text-color);
+}
+
+table th:nth-child(even), table td:nth-child(even) {/*cor das colunas pares*/
+  background-color: white; 
+  filter: brightness(90%);
+  color: var(--text-color);
+}
+
